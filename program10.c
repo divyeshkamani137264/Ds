@@ -1,71 +1,87 @@
-#include<stdio.h>
+#include <stdio.h>
+#define MAX 5
+int queue[MAX];
+int front = -1;
+int rear = -1;
 
 
-void main()
+void insert(int value)
 {
-    int a[10][10], b[10][10], c[10][10];
-    int r1, c1, r2, c2;
-    int i, j, k;
-
-
-
-    printf("Enter rows and columns of first matrix: ");
-    scanf("%d%d", &r1, &c1);
-
-    printf("Enter rows and columns of second matrix: ");
-    scanf("%d%d", &r2, &c2);
-
-    if(c1 != r2)
+    if (rear == MAX - 1)
     {
-        printf("Matrix multiplication is not possible.");
+	printf("Queue Overflow! Cannot insert %d\n", value);
+    } else
+    {
+	if (front == -1) front = 0;
+	rear++;
+	queue[rear] = value;
+	printf("%d inserted into queue.\n", value);
+    }
+}
+
+void delete()
+{
+    if (front == -1 || front > rear)
+    {
+	printf("Queue Underflow! No element to delete.\n");
     }
     else
     {
-        printf("Enter elements of first matrix:\n");
-
-        for(i=0; i<r1; i++)
-        {
-            for(j=0; j<c1; j++)
-            {
-                scanf("%d", &a[i][j]);
-            }
-        }
-
-        printf("Enter elements of second matrix:\n");
-
-        for(i=0; i<r2; i++)
-        {
-            for(j=0; j<c2; j++)
-            {
-                scanf("%d", &b[i][j]);
-            }
-        }
-
-        for(i=0; i<r1; i++)
-        {
-            for(j=0; j<c2; j++)
-            {
-                c[i][j] = 0;
-
-                for(k=0; k<c1; k++)
-                {
-                    c[i][j] = c[i][j] + (a[i][k] * b[k][j]);
-                }
-            }
-        }
-
-        printf("\nResultant Matrix:\n");
-
-        for(i=0; i<r1; i++)
-        {
-            for(j=0; j<c2; j++)
-            {
-                printf("%d\t", c[i][j]);
-            }
-            printf("\n");
-        }
+	printf("%d deleted from queue.\n", queue[front]);
+	front++;
     }
-
-  return 0;
 }
 
+
+void display()
+{
+    if (front == -1 || front > rear)
+    {
+	printf("Queue is empty.\n");
+    } else
+    {
+	int i;
+	printf("Queue elements are: ");
+	for ( i = front; i <= rear; i++)
+	 {
+	    printf("%d ", queue[i]);
+	}
+	printf("\n");
+    }
+}
+
+int main()
+ {
+    int choice, value;
+
+    while (1)
+    {
+	printf("\nQueue Operations Menu:\n");
+	printf("1. Insert\n");
+	printf("2. Delete\n");
+	printf("3. Display\n");
+	printf("4. Exit\n");
+	printf("Enter your choice: ");
+	scanf("%d", &choice);
+
+	switch (choice)
+	{
+	    case 1:
+		printf("Enter value to insert: ");
+		scanf("%d", &value);
+		insert(value);
+		break;
+	    case 2:
+		delete();
+		break;
+	    case 3:
+		display();
+		break;
+	    case 4:
+		printf("Exiting program.\n");
+		return 0;
+	    default:
+		printf("Invalid choice! Please try again.\n");
+	}
+    }
+}

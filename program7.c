@@ -1,30 +1,50 @@
-#include<stdio.h>
+//Write a program to find the power of a given number using stack.
+#include <stdio.h>
+#define MAX 100
 
+int stack[MAX];
+int top = -1;
 
-void main()
+void push(int value)
 {
-    int a[20], n, i, pos;
+    if(top == MAX - 1)
+    {
+        printf("Stack Overflow\n");
+        return;
+    }
+    stack[++top] = value;
+}
+
+int pop()
+{
+    if(top == -1)
+    {
+        printf("Stack Underflow\n");
+        return -1;
+    }
+    return stack[top--];
+}
+
+int main()
+{
+    int base, exponent, result = 1, i;
+
+    printf("Enter Base: ");
+    scanf("%d", &base);
+
+    printf("Enter Exponent: ");
+    scanf("%d", &exponent);
+
+
+    for(i = 0; i < exponent; i++)
+        push(base);
 
 
 
-    printf("Enter number of elements: ");
-    scanf("%d",&n);
+    while(top != -1)
+        result *= pop();
 
-    printf("Enter array elements:\n");
-    for(i=0; i<n; i++)
-        scanf("%d",&a[i]);
-
-    printf("Enter position to delete (1-%d): ", n);
-    scanf("%d",&pos);
-
-    for(i=pos-1; i<n-1; i++)
-        a[i]=a[i+1];
-
-    n--;
-
-    printf("\nArray after deletion:\n");
-    for(i=0; i<n; i++)
-        printf("%d ",a[i]);
+    printf("%d^%d = %d\n", base, exponent, result);
 
     return 0;
 }

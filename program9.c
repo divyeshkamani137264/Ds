@@ -1,41 +1,27 @@
-#include<stdio.h>
+//Write a program to find the Smallest Common Divisor of a given
 
 
-void main()
+#include <stdio.h>
+
+int main()
 {
-    int a[100], n, i, j, temp;
+    int a, b, i, min;
 
+    printf("Enter two numbers: ");
+    scanf("%d%d", &a, &b);
 
+    min = (a < b) ? a : b;
 
-    printf("Enter the size of array: ");
-    scanf("%d", &n);
-
-    printf("Enter %d elements:\n", n);
-
-    for(i=0; i<n; i++)
+    for(i = 2; i <= min; i++)
     {
-        scanf("%d", &a[i]);
-    }
-
-    for(i=0; i<n-1; i++)
-    {
-        for(j=i+1; j<n; j++)
+        if(a % i == 0 && b % i == 0)
         {
-            if(a[i] < a[j])
-            {
-                temp = a[i];
-                a[i] = a[j];
-                a[j] = temp;
-            }
+            printf("Smallest Common Divisor = %d", i);
+            return 0;
         }
     }
 
-    printf("\nArray in Descending Order:\n");
+    printf("No common divisor other than 1.");
 
-    for(i=0; i<n; i++)
-    {
-        printf("%d ", a[i]);
-    }
-
-   return 0;
+    return 0;
 }

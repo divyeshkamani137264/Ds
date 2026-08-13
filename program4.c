@@ -1,35 +1,88 @@
-#include <stdio.h>
+#include<stdio.h>
 
-int main()
+#include<string.h>
+
+#define MAX 100
+
+char stack[MAX];
+int top = -1;
+
+void push(char ch)
 {
-    int A[3], B[3], C[6];
+    if(top == MAX-1)
+    {
+        printf("\nStack Overflow");
+    }
+    else
+    {
+        top++;
+        stack[top] = ch;
+    }
+}
+
+char pop()
+{
+    if(top == -1)
+    {
+        return '\0';
+    }
+    else
+    {
+        return stack[top--];
+    }
+}
+
+void main()
+{
+    char str[MAX];
     int i;
 
-    printf("Enter 3 elements for array A:\n");
-    for(i = 0; i < 3; i++);
+
+
+    printf("Enter a string: ");
+    gets(str);
+
+    /* Push all characters into stack */
+    for(i = 0; str[i] != '\0'; i++)
     {
-        scanf("%d", &A[i]);
+        push(str[i]);
     }
 
-    printf("Enter 3 elements for array B:\n");
-    for(i = 0;i < 3; i++)
+    printf("\nReversed String: ");
+
+    /* Pop all characters from stack */
+    while(top != -1)
     {
-        scanf("%d", B[i]);
+        printf("%c", pop());
     }
 
-    for(i = 0; i < 3; i++)
-    {
-        C[i] = A[i];
-    }
-    for(i = 0; i < 3; i++)
-    {
-        C[i + 3] = B[i];
-    }
-
-    printf("\nmerged array C:\n");
-    for(i = 0; i < 6; i++)
-    {
-        printf("%d", C[i]);
-    }
     return 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    write a C program to display the loop element of the stack without removing it.
 }
