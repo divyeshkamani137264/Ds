@@ -1,35 +1,21 @@
 #include <stdio.h>
 
-#define max 5
-
-int stack[max];
-int top = -1;
-
-void pop()
-{
-    if (top == -1)
-    {
-        printf("\nStack is Empty (Underflow)");
-    }
-    else
-    {
-        printf("\nDeleted element = %d", stack[top]);
-        top--;
-    }
-}
-
 int main()
 {
-    // Assume stack already contains elements
-    stack[0] = 10;
-    stack[1] = 20;
-    stack[2] = 30;
-    top = 2;
+    int a[10], i,sum = 0;
+    float avg;
 
-    pop();
-    pop();
-    pop();
-    pop();
+    printf("Enter 10 elements: \n");
 
-    return 0;
+    for(i = 0; i < 10; i++)
+    {
+        scanf("%d", &a[i]);
+        sum = sum + a[i];
+    }
+     avg = sum / 10.0;
+
+     printf("\nsum = %d", sum);
+     printf("Avarage = %.2f\n", avg);
+
+     return 0;
 }

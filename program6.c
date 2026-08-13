@@ -1,21 +1,34 @@
-#include <stdio.h>
-#include <conio.h>
+#include<stdio.h>
+
+
 void main()
 {
-    int a, b, temp;
+    int a[20], n, i, pos, item;
 
-    printf("Enter two numbers: ");
-    scanf("%d%d", &a, &b);
 
-    while(b != 0)
-    {
-	temp = b;
-	b = a % b;
-	a = temp;
-    }
 
-    printf("GCD = %d", a);
+    printf("Enter number of elements: ");
+    scanf("%d",&n);
 
-   // return 0;
-   getch();
+    printf("Enter array elements:\n");
+    for(i=0; i<n; i++)
+        scanf("%d",&a[i]);
+
+    printf("Enter position to insert (1-%d): ", n+1);
+    scanf("%d",&pos);
+
+    printf("Enter element: ");
+    scanf("%d",&item);
+
+    for(i=n; i>=pos; i--)
+        a[i]=a[i-1];
+
+    a[pos-1]=item;
+    n++;
+
+    printf("\nArray after insertion:\n");
+    for(i=0; i<n; i++)
+        printf("%d ",a[i]);
+
+   return 0;
 }

@@ -1,47 +1,29 @@
-#include<stdio.h>
+#include <stdio.h>
 
-#define max 50
-int stack[max];
-int top=-1;
+int main()
+{
+    int A[3], B[3], C[3];
+    int i;
 
-void push(int value)
-{
-    printf("stack is overflow \n");
-}
-    else
+    printf("Enter 3 elements for array A:\n");
+    for(i = 0;i < 3; i++)
     {
-    top++;
-    stack[top]=value;
+        scanf("%d", &A[i]);
     }
-}
-int pop()
-{
-    if(top==-1)
+
+    printf("\nEnter 3 elements for array B:\n");
+    for(i = 0;i < 3; i++)
     {
-    printf("stack is underflow\n");
-    return 1;
+        scanf("%d", &B[i]);
     }
-    else
+    for(i = 0; i < 3; i++)
     {
-    int value=stack[top];
-    top--;
-    return value;
+    C[i] = A[i] + B[i];
     }
-}
-void main()
-{
-    int n,i;
-    int fact=1;
-    printf("enter a number:");
-    scanf("%d",&n);
-    for(i=1;i<=n;i++)
+    printf("\narray C (A + B):\n");
+    for(i =0; i < 3; i++)
     {
-    push(i);
+        printf("%d", C[i]);
     }
-    while(top!=-1)
-    {
-    fact=fact*pop();
-    }
-    printf("factorial of %d is:%d",n,fact);
-    return 0;
+     return 0;
 }
