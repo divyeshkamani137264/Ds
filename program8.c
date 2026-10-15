@@ -1,20 +1,32 @@
-//write a program to find gdc of two number#include <stdio.h>
-#include <conio.h>
+#include<stdio.h>
+
+
 void main()
 {
-int a, b, temp;
+    int a[10], i, j, temp;
 
-    printf("Enter two numbers: ");
-    scanf("%d%d", &a, &b);
 
-    while(b != 0)
+
+    printf("Enter 10 elements:\n");
+    for(i=0; i<10; i++)
+        scanf("%d",&a[i]);
+
+    for(i=0; i<9; i++)
     {
-    temp = b;
-	b = a % b;
-	a = temp;
+        for(j=i+1; j<10; j++)
+        {
+            if(a[i] > a[j])
+            {
+                temp=a[i];
+                a[i]=a[j];
+                a[j]=temp;
+            }
+        }
     }
 
-    printf("GCD = %d", a);
+    printf("\nAscending Order:\n");
+    for(i=0; i<10; i++)
+        printf("%d ",a[i]);
 
-   getch();
+   return 0;
 }
